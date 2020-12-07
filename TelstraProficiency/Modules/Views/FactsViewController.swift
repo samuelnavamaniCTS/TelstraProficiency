@@ -61,6 +61,8 @@ extension FactsViewController {
 
 extension FactsViewController: FactsViewModelDelegate {
     func didUpdate(_ viewModel: FactsViewModel, error: Error?) {
+        navigationItem.title = viewModel.factsTitle()
+
         if let error = error {
             showAlert(error.localizedDescription)
         } else {

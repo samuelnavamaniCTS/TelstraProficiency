@@ -77,4 +77,9 @@ extension FactsViewModel {
         }
         return row
     }
+    
+    func factsTitle() -> String {
+        facts?.title ?? "Facts"
+    }
 }
+
