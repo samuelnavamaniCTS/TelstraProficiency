@@ -35,7 +35,7 @@ class FactsViewController: UITableViewController {
         }
         
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 100 //UITableView.automaticDimension
+        tableView.estimatedRowHeight = 100
         tableView.register(FactsTableViewCell.self, forCellReuseIdentifier: Constants.resuseIdentifier)
     }
 }
@@ -57,27 +57,28 @@ extension FactsViewController {
             return UITableViewCell()
         }
         
+        if let url = row.url {
+            tableView.beginUpdates()
+            let cellToken = viewModel?.loadImage(from: url, completion: { image in
+                cell.factsImage = image
+            })
+            cell.onReuse = {
+                if let token = cellToken {
+                    self.viewModel?.cancelLoad(token: token)
+                }
+            }
+            tableView.endUpdates()  
+        }
         cell.configure(row)
         return cell
     }
-}
-
-extension FactsViewController {
-    
-//    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-//        UITableView.automaticDimension
-//    }
-//
-//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        UITableView.automaticDimension
-//    }
 }
 
 //MARK: - FactsViewModelDelegate Methods
 
 extension FactsViewController: FactsViewModelDelegate {
     func didUpdate(_ viewModel: FactsViewModel, error: Error?) {
-        navigationItem.title = viewModel.factsTitle()
+        self.navigationItem.title = viewModel.factsTitle()
 
         if let error = error {
             showAlert(error.localizedDescription)

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 
 /// Delegate of the view model to notify updates.
@@ -28,6 +29,7 @@ final class FactsViewModel {
     //MARK: - Properties
     
     let service: FactsServiceProtocol
+    let imageLoaderService: ImageLoaderServiceProtocol
     
     var facts: Facts? {
         didSet {
@@ -37,8 +39,10 @@ final class FactsViewModel {
     
     //MARK: - Initialiser Methods
     
-    init(with service: FactsServiceProtocol = FactsService()) {
+    init(with service: FactsServiceProtocol = FactsService(),
+         imageLoaderService: ImageLoaderServiceProtocol = ImageLoaderService()) {
         self.service = service
+        self.imageLoaderService = imageLoaderService
     }
 }
 
@@ -53,6 +57,7 @@ extension FactsViewModel: FactsViewModelProtocol {
                 let rows = facts.rows.filter { $0.title != nil || $0.description != nil || $0.url != nil}
                 let allFacts = Facts(title: facts.title, rows: rows)
                 print(String(describing: allFacts))
+                
                 self.facts = allFacts
             case .failure(let error):
                 print(error)
@@ -80,6 +85,25 @@ extension FactsViewModel {
     
     func factsTitle() -> String {
         facts?.title ?? "Facts"
+    }
+    
+    func loadImage(from imageUrl: URL, completion: @escaping (UIImage) -> Void) -> UUID? {
+        
+        let token = imageLoaderService.loadImage(imageUrl) { result in
+          do {
+            let image = try result.get()
+            DispatchQueue.main.async {
+              completion(image)
+            }
+          } catch {
+            print(error)
+          }
+        }
+        return token
+    }
+    
+    func cancelLoad(token: UUID) {
+        self.imageLoaderService.cancelLoad(token)
     }
 }
 

@@ -9,16 +9,15 @@ import UIKit
 
 class FactsTableViewCell: UITableViewCell {
     
-    let factsImageView: UIImageView = {
+    private let factsImageView: UIImageView = {
         let factsImage = UIImageView()
-        factsImage.contentMode = .scaleAspectFill
-        factsImage.layer.cornerRadius = 20
+        factsImage.contentMode = .scaleAspectFit
         factsImage.clipsToBounds = true
         factsImage.translatesAutoresizingMaskIntoConstraints = false
         return factsImage
     }()
     
-    let titleLabel: UILabel = {
+    private let titleLabel: UILabel = {
         let title = UILabel()
         title.font = UIFont.boldSystemFont(ofSize: 20)
         title.lineBreakMode = .byWordWrapping
@@ -27,7 +26,7 @@ class FactsTableViewCell: UITableViewCell {
         return title
     }()
     
-    let descriptionLabel: UILabel = {
+    private let descriptionLabel: UILabel = {
         let description = UILabel()
         description.font = UIFont.boldSystemFont(ofSize: 14)
         description.lineBreakMode = .byWordWrapping
@@ -37,14 +36,21 @@ class FactsTableViewCell: UITableViewCell {
         return description
     }()
     
-    let stackView: UIStackView = {
+    private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.distribution = .fillProportionally
+        stackView.distribution = .fill
         stackView.spacing = 5
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
+    
+    var onReuse: () -> Void = {}
+    var factsImage: UIImage? {
+        didSet {
+            factsImageView.image = factsImage
+        }
+    }
     
     override init(style: CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -73,6 +79,8 @@ class FactsTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        
+        onReuse()
         factsImageView.image = nil
     }
 }
@@ -94,17 +102,7 @@ private extension FactsTableViewCell {
 extension FactsTableViewCell {
     
     func configure(_ row: FactsRow) {
-        if let url = row.url {
-            DispatchQueue.global().async {
-                let imageData = try? NSData(contentsOf: url, options: [])
-                if let data = imageData, let image = UIImage(data: data as Data) {
-                    DispatchQueue.main.async {
-                        self.factsImageView.image = image
-                        self.layoutIfNeeded()
-                    }
-                }
-            }
-        }
+        factsImageView.image = UIImage(named: "default")!
         titleLabel.text = row.title
         descriptionLabel.text = row.description
     }

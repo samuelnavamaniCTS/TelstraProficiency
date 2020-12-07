@@ -8,7 +8,7 @@
 import Foundation
 
 protocol SessionProtocol {
-    func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void)
+    func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask
 }
 
 final class Session: SessionProtocol {
@@ -19,8 +19,9 @@ final class Session: SessionProtocol {
         self.session = session
     }
 
-    func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
+    func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
         let dataTask = session.dataTask(with: request, completionHandler: completionHandler)
         dataTask.resume()
+        return dataTask
     }
 }

@@ -13,7 +13,7 @@ protocol FactsServiceProtocol {
 
 struct FactsService {
     
-    let session: FactsSessionProtocol
+    private let session: FactsSessionProtocol
     
     init(with session: FactsSessionProtocol = FactsSession.shared) {
         self.session = session
@@ -25,7 +25,7 @@ extension FactsService: FactsServiceProtocol {
     func getFacts(with completion: @escaping (Result<Facts, Error>) -> Void) {
         
         let url = URL(string: "https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json")!
-        session.executeRequest(with: url) { result in
+        let _ = session.executeRequest(with: url) { result in
             switch result {
             case .success(let data):
                 if let data = data {
@@ -40,7 +40,9 @@ extension FactsService: FactsServiceProtocol {
                 }
             case .failure(let error):
                 print("Facts service failed with error: \(error.localizedDescription)")
-                completion(.failure(error))
+                DispatchQueue.main.async {
+                    completion(.failure(error))
+                }
             }
         }
     }

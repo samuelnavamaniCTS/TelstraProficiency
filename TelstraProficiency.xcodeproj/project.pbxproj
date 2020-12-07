@@ -21,6 +21,7 @@
 		4B824786257DA05D003DDF29 /* JSONToModelTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B824785257DA05D003DDF29 /* JSONToModelTransformer.swift */; };
 		4B824791257DAFB7003DDF29 /* FactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B824790257DAFB7003DDF29 /* FactsViewModel.swift */; };
 		4B824796257DC97B003DDF29 /* FactsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B824795257DC97B003DDF29 /* FactsTableViewCell.swift */; };
+		4B8247A4257E00C3003DDF29 /* ImageLoaderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8247A3257E00C3003DDF29 /* ImageLoaderService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		4B824785257DA05D003DDF29 /* JSONToModelTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONToModelTransformer.swift; sourceTree = "<group>"; };
 		4B824790257DAFB7003DDF29 /* FactsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactsViewModel.swift; sourceTree = "<group>"; };
 		4B824795257DC97B003DDF29 /* FactsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactsTableViewCell.swift; sourceTree = "<group>"; };
+		4B8247A3257E00C3003DDF29 /* ImageLoaderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoaderService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +200,7 @@
 				4B824778257D9BB6003DDF29 /* FactsSession.swift */,
 				4B824780257D9E71003DDF29 /* FactsService.swift */,
 				4B824785257DA05D003DDF29 /* JSONToModelTransformer.swift */,
+				4B8247A3257E00C3003DDF29 /* ImageLoaderService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -333,6 +336,7 @@
 			files = (
 				4B824786257DA05D003DDF29 /* JSONToModelTransformer.swift in Sources */,
 				4B824771257D9B8E003DDF29 /* Session.swift in Sources */,
+				4B8247A4257E00C3003DDF29 /* ImageLoaderService.swift in Sources */,
 				4B824779257D9BB6003DDF29 /* FactsSession.swift in Sources */,
 				4B824791257DAFB7003DDF29 /* FactsViewModel.swift in Sources */,
 				4B824781257D9E71003DDF29 /* FactsService.swift in Sources */,
