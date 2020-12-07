@@ -56,7 +56,6 @@ extension FactsViewController {
         }
         
         if let url = row.url {
-            tableView.beginUpdates()
             let cellToken = viewModel?.loadImage(from: url, completion: { image in
                 cell.factsImage = image
             })
@@ -65,7 +64,6 @@ extension FactsViewController {
                     self.viewModel?.cancelLoad(token: token)
                 }
             }
-            tableView.endUpdates()  
         }
         cell.configure(row)
         return cell
