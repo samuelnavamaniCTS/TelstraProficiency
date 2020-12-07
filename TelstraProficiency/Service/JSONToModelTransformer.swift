@@ -8,7 +8,6 @@
 import Foundation
 
 /// Helper class for json to model transformation
-
 struct JSONToModelTransformer<T: Codable> {
 
     static func convert(data: Data, to modelType: T.Type = T.self) -> Result<T, Error> {

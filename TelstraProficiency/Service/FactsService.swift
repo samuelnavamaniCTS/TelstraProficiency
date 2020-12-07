@@ -13,12 +13,18 @@ protocol FactsServiceProtocol {
 
 struct FactsService {
     
+    //MARK: - Properties
+    
     private let session: FactsSessionProtocol
+    
+    //MARK: - Initiliser Methods
     
     init(with session: FactsSessionProtocol = FactsSession.shared) {
         self.session = session
     }
 }
+
+//MARK: - FactsServiceProtocol methods
 
 extension FactsService: FactsServiceProtocol {
     
@@ -39,7 +45,6 @@ extension FactsService: FactsServiceProtocol {
                     }
                 }
             case .failure(let error):
-                print("Facts service failed with error: \(error.localizedDescription)")
                 DispatchQueue.main.async {
                     completion(.failure(error))
                 }

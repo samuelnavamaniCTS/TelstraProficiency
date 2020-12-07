@@ -9,6 +9,8 @@ import UIKit
 
 class FactsTableViewCell: UITableViewCell {
     
+    //MARK: - Private properties
+    
     private let factsImageView: UIImageView = {
         let factsImage = UIImageView()
         factsImage.contentMode = .scaleAspectFit
@@ -45,12 +47,16 @@ class FactsTableViewCell: UITableViewCell {
         return stackView
     }()
     
+    //MARK: - Public properties
+    
     var onReuse: () -> Void = {}
     var factsImage: UIImage? {
         didSet {
             factsImageView.image = factsImage
         }
     }
+    
+    //MARK: - Initialiser Methods
     
     override init(style: CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -66,6 +72,8 @@ class FactsTableViewCell: UITableViewCell {
         fatalError("init(coder:) is not implemented, please create using code.")
         
     }
+    
+    //MARK: - Lifecycle methods
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -85,6 +93,8 @@ class FactsTableViewCell: UITableViewCell {
     }
 }
 
+//MARK: - Private methods
+
 private extension FactsTableViewCell {
     
     func updateCellConstraints() {
@@ -98,6 +108,8 @@ private extension FactsTableViewCell {
         ])
     }
 }
+
+//MARK: - Public methods
 
 extension FactsTableViewCell {
     

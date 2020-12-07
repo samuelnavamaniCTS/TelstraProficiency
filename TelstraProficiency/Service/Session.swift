@@ -11,13 +11,22 @@ protocol SessionProtocol {
     func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask
 }
 
-final class Session: SessionProtocol {
+final class Session {
     
-    let session: URLSession
+    //MARK: - Properties
+    
+    private let session: URLSession
+    
+    //MARK: - Initliaser Methods
     
     init(with session: URLSession = URLSession(configuration: .default)) {
         self.session = session
     }
+}
+
+//MARK: - SessionProtocol Methods
+
+extension Session: SessionProtocol {
 
     func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
         let dataTask = session.dataTask(with: request, completionHandler: completionHandler)

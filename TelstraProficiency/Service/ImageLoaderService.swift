@@ -13,16 +13,22 @@ protocol ImageLoaderServiceProtocol {
     func cancelLoad(_ uuid: UUID)
 }
 
-class ImageLoaderService {
+final class ImageLoaderService {
+    
+    //MARK: - Properties
     
     private let session: FactsSessionProtocol
     private var loadedImages = [URL: UIImage]()
     private var runningRequests = [UUID: URLSessionDataTask]()
     
+    //MARK: - Initiliaser Methods
+    
     init(with session: FactsSessionProtocol = FactsSession.shared) {
         self.session = session
     }
 }
+
+//MARK: - ImageLoaderServiceProtocol methods
 
 extension ImageLoaderService: ImageLoaderServiceProtocol {
     func loadImage(_ url: URL, _ completion: @escaping (Result<UIImage, Error>) -> Void) -> UUID? {
@@ -47,7 +53,6 @@ extension ImageLoaderService: ImageLoaderServiceProtocol {
                     return
                 }
             case .failure(let error):
-                print("Image Loader service failed with error: \(error.localizedDescription)")
                 DispatchQueue.main.async {
                     completion(.failure(error))
                 }

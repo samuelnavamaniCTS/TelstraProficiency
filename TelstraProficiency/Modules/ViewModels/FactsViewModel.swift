@@ -18,6 +18,8 @@ protocol FactsViewModelDelegate: AnyObject {
 /// Protocol for the  view model decouples and testable methods.
 protocol FactsViewModelProtocol {
     func getFacts()
+    func loadImage(from imageUrl: URL, completion: @escaping (UIImage) -> Void) -> UUID?
+    func cancelLoad(token: UUID)
 }
 
 final class FactsViewModel {
@@ -28,10 +30,9 @@ final class FactsViewModel {
     
     //MARK: - Properties
     
-    let service: FactsServiceProtocol
-    let imageLoaderService: ImageLoaderServiceProtocol
-    
-    var facts: Facts? {
+    private let service: FactsServiceProtocol
+    private let imageLoaderService: ImageLoaderServiceProtocol
+    private var facts: Facts? {
         didSet {
             delegate?.didUpdate(self, error: nil)
         }
@@ -65,6 +66,25 @@ extension FactsViewModel: FactsViewModelProtocol {
             }
         }
     }
+    
+    func loadImage(from imageUrl: URL, completion: @escaping (UIImage) -> Void) -> UUID? {
+        
+        let token = imageLoaderService.loadImage(imageUrl) { result in
+          do {
+            let image = try result.get()
+            DispatchQueue.main.async {
+              completion(image)
+            }
+          } catch {
+            print(error)
+          }
+        }
+        return token
+    }
+    
+    func cancelLoad(token: UUID) {
+        self.imageLoaderService.cancelLoad(token)
+    }
 }
 
 //MARK: - Table Datasource methods
@@ -85,25 +105,6 @@ extension FactsViewModel {
     
     func factsTitle() -> String {
         facts?.title ?? "Facts"
-    }
-    
-    func loadImage(from imageUrl: URL, completion: @escaping (UIImage) -> Void) -> UUID? {
-        
-        let token = imageLoaderService.loadImage(imageUrl) { result in
-          do {
-            let image = try result.get()
-            DispatchQueue.main.async {
-              completion(image)
-            }
-          } catch {
-            print(error)
-          }
-        }
-        return token
-    }
-    
-    func cancelLoad(token: UUID) {
-        self.imageLoaderService.cancelLoad(token)
     }
 }
 
