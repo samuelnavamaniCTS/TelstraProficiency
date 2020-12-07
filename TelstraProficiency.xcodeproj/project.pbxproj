@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		4B82471D257B3DBC003DDF29 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B82471C257B3DBC003DDF29 /* AppDelegate.swift */; };
-		4B82471F257B3DBC003DDF29 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B82471E257B3DBC003DDF29 /* SceneDelegate.swift */; };
 		4B824721257B3DBC003DDF29 /* FactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B824720257B3DBC003DDF29 /* FactsViewController.swift */; };
 		4B824726257B3DBE003DDF29 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B824725257B3DBE003DDF29 /* Assets.xcassets */; };
 		4B824729257B3DBE003DDF29 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B824727257B3DBE003DDF29 /* LaunchScreen.storyboard */; };
@@ -44,7 +43,6 @@
 /* Begin PBXFileReference section */
 		4B824719257B3DBC003DDF29 /* TelstraProficiency.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TelstraProficiency.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B82471C257B3DBC003DDF29 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4B82471E257B3DBC003DDF29 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		4B824720257B3DBC003DDF29 /* FactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactsViewController.swift; sourceTree = "<group>"; };
 		4B824725257B3DBE003DDF29 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B824728257B3DBE003DDF29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -142,7 +140,6 @@
 		4B824755257B61AA003DDF29 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				4B82471E257B3DBC003DDF29 /* SceneDelegate.swift */,
 				4B82471C257B3DBC003DDF29 /* AppDelegate.swift */,
 			);
 			path = Main;
@@ -343,7 +340,6 @@
 				4B824721257B3DBC003DDF29 /* FactsViewController.swift in Sources */,
 				4B82476B257B632E003DDF29 /* Facts.swift in Sources */,
 				4B82471D257B3DBC003DDF29 /* AppDelegate.swift in Sources */,
-				4B82471F257B3DBC003DDF29 /* SceneDelegate.swift in Sources */,
 				4B824796257DC97B003DDF29 /* FactsTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -515,6 +511,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W3ZZKQ6MWP;
 				INFOPLIST_FILE = "$(SRCROOT)/TelstraProficiency/Resources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -534,6 +531,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W3ZZKQ6MWP;
 				INFOPLIST_FILE = "$(SRCROOT)/TelstraProficiency/Resources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

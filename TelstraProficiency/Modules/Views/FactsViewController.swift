@@ -15,6 +15,7 @@ class FactsViewController: UITableViewController {
         static let resuseIdentifier = "FactsCellID"
         static let connectionError = "Connection Error"
         static let primary = "Ok"
+        static let pullToRefresh = "Pull to refresh."
     }
     
     //MARK: - Properties
@@ -24,19 +25,16 @@ class FactsViewController: UITableViewController {
             viewModel?.delegate = self
         }
     }
+    
 
     //MARK: - LifeCycle Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let viewModel = viewModel {
-            viewModel.getFacts()
-        }
-        
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 100
-        tableView.register(FactsTableViewCell.self, forCellReuseIdentifier: Constants.resuseIdentifier)
+        configureRefresh()
+        configureTableView()
+        getFacts()
     }
 }
 
@@ -78,8 +76,9 @@ extension FactsViewController {
 
 extension FactsViewController: FactsViewModelDelegate {
     func didUpdate(_ viewModel: FactsViewModel, error: Error?) {
-        self.navigationItem.title = viewModel.factsTitle()
-
+        navigationItem.title = viewModel.factsTitle()
+        refreshControl?.endRefreshing()
+        
         if let error = error {
             showAlert(error.localizedDescription)
         } else {
@@ -96,6 +95,28 @@ private extension FactsViewController {
         let alert = UIAlertController(title: Constants.connectionError, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: Constants.primary, style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
+    }
+    
+    func configureRefresh() {
+        refreshControl = UIRefreshControl()
+        refreshControl?.attributedTitle = NSAttributedString(string: Constants.pullToRefresh)
+        refreshControl?.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
+    }
+    
+    func configureTableView() {
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 100
+        tableView.register(FactsTableViewCell.self, forCellReuseIdentifier: Constants.resuseIdentifier)
+    }
+    
+    @objc func refresh(_ sender: AnyObject) {
+        getFacts()
+    }
+    
+    func getFacts() {
+        if let viewModel = viewModel {
+            viewModel.getFacts()
+        }
     }
 }
 
