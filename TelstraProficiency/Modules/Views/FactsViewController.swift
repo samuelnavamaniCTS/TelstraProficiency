@@ -12,7 +12,7 @@ class FactsViewController: UITableViewController {
     //MARK: - Enums
     
     enum Constants {
-        static let resuseIdentifier = "FactsViewCellID"
+        static let resuseIdentifier = "FactsCellID"
         static let connectionError = "Connection Error"
         static let primary = "Ok"
     }
@@ -34,7 +34,9 @@ class FactsViewController: UITableViewController {
             viewModel.getFacts()
         }
         
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.resuseIdentifier)
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 100 //UITableView.automaticDimension
+        tableView.register(FactsTableViewCell.self, forCellReuseIdentifier: Constants.resuseIdentifier)
     }
 }
 
@@ -42,19 +44,33 @@ class FactsViewController: UITableViewController {
 
 extension FactsViewController {
     
+    override func numberOfSections(in tableView: UITableView) -> Int {
+            return 1
+        }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel?.numberOfRowsInSection() ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let row = viewModel?.cellForRowAt(indexPath: indexPath) else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.resuseIdentifier) as? FactsTableViewCell, let row = viewModel?.cellForRowAt(indexPath: indexPath) else {
             return UITableViewCell()
         }
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.resuseIdentifier, for: indexPath)
-        cell.textLabel?.text = row.title
+        cell.configure(row)
         return cell
     }
+}
+
+extension FactsViewController {
+    
+//    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+//        UITableView.automaticDimension
+//    }
+//
+//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        UITableView.automaticDimension
+//    }
 }
 
 //MARK: - FactsViewModelDelegate Methods

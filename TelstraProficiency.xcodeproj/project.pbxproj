@@ -20,6 +20,7 @@
 		4B824781257D9E71003DDF29 /* FactsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B824780257D9E71003DDF29 /* FactsService.swift */; };
 		4B824786257DA05D003DDF29 /* JSONToModelTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B824785257DA05D003DDF29 /* JSONToModelTransformer.swift */; };
 		4B824791257DAFB7003DDF29 /* FactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B824790257DAFB7003DDF29 /* FactsViewModel.swift */; };
+		4B824796257DC97B003DDF29 /* FactsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B824795257DC97B003DDF29 /* FactsTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		4B824780257D9E71003DDF29 /* FactsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactsService.swift; sourceTree = "<group>"; };
 		4B824785257DA05D003DDF29 /* JSONToModelTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONToModelTransformer.swift; sourceTree = "<group>"; };
 		4B824790257DAFB7003DDF29 /* FactsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactsViewModel.swift; sourceTree = "<group>"; };
+		4B824795257DC97B003DDF29 /* FactsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactsTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				4B824720257B3DBC003DDF29 /* FactsViewController.swift */,
+				4B824795257DC97B003DDF29 /* FactsTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 				4B82476B257B632E003DDF29 /* Facts.swift in Sources */,
 				4B82471D257B3DBC003DDF29 /* AppDelegate.swift in Sources */,
 				4B82471F257B3DBC003DDF29 /* SceneDelegate.swift in Sources */,
+				4B824796257DC97B003DDF29 /* FactsTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
