@@ -18,14 +18,20 @@ protocol FactsSessionProtocol {
 
 final class FactsSession {
     
+    //MARK: - Properties
+    
     static let shared = FactsSession()
     
     private let session: SessionProtocol
+    
+    //MARK: - Initialiser Methods
     
     init(with session: SessionProtocol = Session()) {
         self.session = session
     }
 }
+
+//MARK: - FactsSessionProtocol Methods
 
 extension FactsSession: FactsSessionProtocol {
     
