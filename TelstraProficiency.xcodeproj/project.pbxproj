@@ -16,7 +16,6 @@
 		4B824721257B3DBC003DDF29 /* FactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B824720257B3DBC003DDF29 /* FactsViewController.swift */; };
 		4B824726257B3DBE003DDF29 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B824725257B3DBE003DDF29 /* Assets.xcassets */; };
 		4B824729257B3DBE003DDF29 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B824727257B3DBE003DDF29 /* LaunchScreen.storyboard */; };
-		4B82473F257B3DBE003DDF29 /* TelstraProficiencyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B82473E257B3DBE003DDF29 /* TelstraProficiencyUITests.swift */; };
 		4B82476B257B632E003DDF29 /* Facts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B82476A257B632E003DDF29 /* Facts.swift */; };
 		4B824771257D9B8E003DDF29 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B824770257D9B8E003DDF29 /* Session.swift */; };
 		4B824779257D9BB6003DDF29 /* FactsSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B824778257D9BB6003DDF29 /* FactsSession.swift */; };
@@ -59,7 +58,6 @@
 		4B82472F257B3DBE003DDF29 /* TelstraProficiencyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TelstraProficiencyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B824735257B3DBE003DDF29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B82473A257B3DBE003DDF29 /* TelstraProficiencyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TelstraProficiencyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4B82473E257B3DBE003DDF29 /* TelstraProficiencyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelstraProficiencyUITests.swift; sourceTree = "<group>"; };
 		4B824740257B3DBE003DDF29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B82476A257B632E003DDF29 /* Facts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Facts.swift; sourceTree = "<group>"; };
 		4B824770257D9B8E003DDF29 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
@@ -143,7 +141,6 @@
 		4B82473D257B3DBE003DDF29 /* TelstraProficiencyUITests */ = {
 			isa = PBXGroup;
 			children = (
-				4B82473E257B3DBE003DDF29 /* TelstraProficiencyUITests.swift */,
 				4B824740257B3DBE003DDF29 /* Info.plist */,
 			);
 			path = TelstraProficiencyUITests;
@@ -373,7 +370,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B82473F257B3DBE003DDF29 /* TelstraProficiencyUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
