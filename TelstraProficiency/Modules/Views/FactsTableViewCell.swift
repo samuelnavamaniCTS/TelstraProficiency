@@ -16,12 +16,14 @@ class FactsTableViewCell: UITableViewCell {
         factsImage.contentMode = .scaleAspectFit
         factsImage.clipsToBounds = true
         factsImage.translatesAutoresizingMaskIntoConstraints = false
+        factsImage.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        factsImage.heightAnchor.constraint(equalToConstant: 50).isActive = true
         return factsImage
     }()
     
     private let titleLabel: UILabel = {
         let title = UILabel()
-        title.font = UIFont.boldSystemFont(ofSize: 20)
+        title.font = UIFont.preferredFont(forTextStyle: .headline)
         title.lineBreakMode = .byWordWrapping
         title.numberOfLines = 0
         title.translatesAutoresizingMaskIntoConstraints = false
@@ -30,7 +32,7 @@ class FactsTableViewCell: UITableViewCell {
     
     private let descriptionLabel: UILabel = {
         let description = UILabel()
-        description.font = UIFont.boldSystemFont(ofSize: 14)
+        description.font = UIFont.preferredFont(forTextStyle: .subheadline)
         description.lineBreakMode = .byWordWrapping
         description.numberOfLines = 0
         description.clipsToBounds = true
@@ -38,9 +40,18 @@ class FactsTableViewCell: UITableViewCell {
         return description
     }()
     
-    private let stackView: UIStackView = {
+    private let verticalStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
+        stackView.distribution = .fill
+        stackView.spacing = 5
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
+    private let horizantStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
         stackView.distribution = .fill
         stackView.spacing = 5
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -53,6 +64,7 @@ class FactsTableViewCell: UITableViewCell {
     var factsImage: UIImage? {
         didSet {
             factsImageView.image = factsImage
+            factsImageView.isHidden = false
         }
     }
     
@@ -61,10 +73,11 @@ class FactsTableViewCell: UITableViewCell {
     override init(style: CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        contentView.addSubview(stackView)
-        stackView.addArrangedSubview(factsImageView)
-        stackView.addArrangedSubview(titleLabel)
-        stackView.addArrangedSubview(descriptionLabel)
+        contentView.addSubview(verticalStackView)
+        horizantStackView.addArrangedSubview(factsImageView)
+        horizantStackView.addArrangedSubview(titleLabel)
+        verticalStackView.addArrangedSubview(horizantStackView)
+        verticalStackView.addArrangedSubview(descriptionLabel)
         updateCellConstraints()
     }
     
@@ -101,10 +114,10 @@ private extension FactsTableViewCell {
         let marginGuide = contentView.layoutMarginsGuide
         
         NSLayoutConstraint.activate([
-            stackView.leadingAnchor.constraint(equalTo: marginGuide.leadingAnchor, constant: 0),
-            stackView.trailingAnchor.constraint(equalTo: marginGuide.trailingAnchor, constant: 0),
-            stackView.topAnchor.constraint(equalTo: marginGuide.topAnchor, constant: 0),
-            stackView.bottomAnchor.constraint(equalTo: marginGuide.bottomAnchor, constant: 0)
+            verticalStackView.leadingAnchor.constraint(equalTo: marginGuide.leadingAnchor, constant: 0),
+            verticalStackView.trailingAnchor.constraint(equalTo: marginGuide.trailingAnchor, constant: 0),
+            verticalStackView.topAnchor.constraint(equalTo: marginGuide.topAnchor, constant: 0),
+            verticalStackView.bottomAnchor.constraint(equalTo: marginGuide.bottomAnchor, constant: 0)
         ])
     }
 }
@@ -114,7 +127,7 @@ private extension FactsTableViewCell {
 extension FactsTableViewCell {
     
     func configure(_ row: FactsRow) {
-        factsImageView.image = UIImage(named: "default")!
+        factsImageView.isHidden = true
         titleLabel.text = row.title
         descriptionLabel.text = row.description
     }
