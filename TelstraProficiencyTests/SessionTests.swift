@@ -31,7 +31,7 @@ class SessionTests: XCTestCase {
          
          //When
          var passedData: Data?
-         sut.dataTask(with: mockRequest) { data, response, error in
+         let _ = sut.dataTask(with: mockRequest) { data, response, error in
              if let data = data {
                  XCTAssertNil(response)
                  XCTAssertNil(error)

@@ -7,7 +7,7 @@
 		<key>TelstraProficiency.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -18,6 +18,11 @@
 			<true/>
 		</dict>
 		<key>4B82472E257B3DBE003DDF29</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4B824739257B3DBE003DDF29</key>
 		<dict>
 			<key>primary</key>
 			<true/>
